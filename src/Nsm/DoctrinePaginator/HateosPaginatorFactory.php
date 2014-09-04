@@ -29,13 +29,13 @@ class HateosPaginatorFactory
     }
 
     /**
-     * @param DoctrinePaginator $pager
+     * @param DoctrinePaginatorDecorator $pager
      * @param Route $route
      * @param null $inline
      *
      * @return PaginatedRepresentation
      */
-    public function createRepresentation(DoctrinePaginator $pager, Route $route, $inline = null)
+    public function createRepresentation(DoctrinePaginatorDecorator $pager, Route $route, $inline = null)
     {
         if (null === $inline) {
             $inline = new CollectionRepresentation($pager->getCurrentPageResults());
@@ -44,13 +44,15 @@ class HateosPaginatorFactory
         return new PaginatedRepresentation(
             $inline,
             $route->getName(),
-            $route->getParameters(),
+            // PaginatedRepresentation::__construct exprects an array
+            (array) $route->getParameters(),
             $pager->getCurrentPageNumber(),
             $pager->getMaxPerPageNumber(),
             $pager->getTotalPageCount(),
             $this->getPageParameterName(),
             $this->getLimitParameterName(),
-            $route->isAbsolute()
+            $route->isAbsolute(),
+            $pager->getTotalResultCount()
         );
     }
 

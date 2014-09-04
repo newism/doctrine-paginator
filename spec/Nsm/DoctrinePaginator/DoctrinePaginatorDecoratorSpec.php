@@ -4,11 +4,9 @@ namespace spec\Nsm\DoctrinePaginator;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Prophecy\Prophet;
 
 class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
 {

@@ -34,4 +34,9 @@ class DoctrinePaginatorFactorySpec extends ObjectBehavior
         $this->create($query)->shouldHaveType('Nsm\DoctrinePaginator\DoctrinePaginatorDecorator');
     }
 
+    function it_should_return_an_invalid_argument_exception_when_constructed_with_an_invalid_argument(EntityManager $entityManager)
+    {
+        $this->shouldThrow('\InvalidArgumentException')->during('create', array(false));
+    }
+
 }
