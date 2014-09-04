@@ -15,6 +15,6 @@
         "phpspec/phpspec": "2.0.*@dev"
     },
     "autoload": {
-        "psr-4": {"Nsm\\": "src/"}
+        "psr-4": {"Nsm\\": "src/Nsm"}
     }
 }
