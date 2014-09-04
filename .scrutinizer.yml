@@ -1,3 +1,8 @@
+checks:
+    php:
+        scope_indentation:
+            spaces_per_level: 4
+
 tools:
 
     # https://scrutinizer-ci.com/docs/tools/php/security-advisory-checker/
@@ -7,15 +12,25 @@ tools:
     php_code_sniffer:
         enabled: true
         command: phpcs
-        config:
-            standard: PSR2
         filter:
             excluded_paths:
                 - 'bin/*'
                 - 'vendor/*'
                 - 'features/*'
+        config:
+            standard: PSR2
+        # path_configs:
+        #     spec:
+        #         paths: ['spec/*']
+        #         enabled: true
+        #         config:
+        #             standard: PSR2
+        #             sniffs:
+        #                 generic:
+        #                     naming_conventions:
+        #                         camel_caps_function_name_sniff: false
 
-    #
+    # https://scrutinizer-ci.com/docs/tools/php/copy-paste-detector/
     php_cpd:
         enabled: true
         command: phpcpd
