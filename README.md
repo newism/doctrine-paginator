@@ -1,7 +1,7 @@
 NSM Doctrine Paginator 
 ======================
 
-[![Travis CI](https://travis-ci.org/newism/doctrine-paginator.svg?branch=master)](https://travis-ci.org/newism/doctrine-paginator)
+[![Travis CI](https://travis-ci.org/newism/doctrine-paginator.svg?branch=master)](https://travis-ci.org/newism/doctrine-paginator) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/newism/doctrine-paginator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/newism/doctrine-paginator/?branch=master)
 
 Simple decorator for `\Doctrine\ORM\Tools\Pagination\Paginator`.
 
