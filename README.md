@@ -1,5 +1,7 @@
-NSM Doctrine Paginator
+NSM Doctrine Paginator 
 ======================
+
+[![Travis CI](https://travis-ci.org/newism/doctrine-paginator.svg?branch=master)](https://travis-ci.org/newism/doctrine-paginator)
 
 Simple decorator for `\Doctrine\ORM\Tools\Pagination\Paginator`.
 
