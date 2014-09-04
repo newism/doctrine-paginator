@@ -72,4 +72,3 @@ class HateosPaginatorFactory
         return $this->limitParameterName;
     }
 }
-

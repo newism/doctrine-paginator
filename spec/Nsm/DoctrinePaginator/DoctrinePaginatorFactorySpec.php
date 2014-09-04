@@ -10,7 +10,7 @@ use Prophecy\Argument;
 
 class DoctrinePaginatorFactorySpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Nsm\DoctrinePaginator\DoctrinePaginatorFactory');
     }
@@ -19,10 +19,11 @@ class DoctrinePaginatorFactorySpec extends ObjectBehavior
      * @param \Doctrine\ORM\QueryBuilder $queryBuilder
      * @param \Doctrine\ORM\EntityManager $entityManager
      */
-    function it_should_return_the_expected_object_when_constructed_with_query_builder(
+    public function it_should_return_the_expected_object_when_constructed_with_query_builder(
         QueryBuilder $queryBuilder,
         EntityManager $entityManager
-    ) {
+    )
+    {
         // Create a concrete query see: https://github.com/phpspec/prophecy/issues/102
         $query = new Query($entityManager->getWrappedObject());
         $queryBuilder->getQuery()->willReturn($query);
@@ -33,7 +34,7 @@ class DoctrinePaginatorFactorySpec extends ObjectBehavior
     /**
      * @param \Doctrine\ORM\EntityManager $entityManager
      */
-    function it_should_return_the_expected_object_when_constructed_with_query(EntityManager $entityManager)
+    public function it_should_return_the_expected_object_when_constructed_with_query(EntityManager $entityManager)
     {
         // Create a concrete query see: https://github.com/phpspec/prophecy/issues/102
         $query = new Query($entityManager->getWrappedObject());
@@ -41,7 +42,7 @@ class DoctrinePaginatorFactorySpec extends ObjectBehavior
         $this->create($query)->shouldHaveType('Nsm\DoctrinePaginator\DoctrinePaginatorDecorator');
     }
 
-    function it_should_return_an_invalid_argument_exception_when_constructed_with_an_invalid_argument()
+    public function it_should_return_an_invalid_argument_exception_when_constructed_with_an_invalid_argument()
     {
         $this->shouldThrow('\InvalidArgumentException')->during('create', array(false));
     }
