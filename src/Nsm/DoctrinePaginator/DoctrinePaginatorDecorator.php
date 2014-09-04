@@ -76,6 +76,7 @@ class DoctrinePaginatorDecorator
 
     /**
      * @param int $currentPageNumber
+     *
      * @return $this
      */
     public function setCurrentPageNumber($currentPageNumber)
@@ -238,7 +239,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * @return int
+     * @return double
      */
     public function getCurrentPageFirstResultPositionInTotalResults()
     {
@@ -257,7 +258,7 @@ class DoctrinePaginatorDecorator
      *
      * @param int $pageNumber
      *
-     * @return int
+     * @return double
      */
     public function getPageFirstResultPositionInTotalResults($pageNumber)
     {
@@ -397,7 +398,7 @@ class DoctrinePaginatorDecorator
      *
      * @param int $pageNumber
      *
-     * @return mixed
+     * @return integer
      * @throws \Exception
      */
     public function getNextPageNumber($pageNumber)
