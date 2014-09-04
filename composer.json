@@ -1,0 +1,13 @@
+{
+    "name": "nsm/doctrine-paginator",
+    "require": {
+        "phpspec/phpspec": "dev-master",
+        "willdurand/hateoas": "2.3.*@dev"
+    },
+    "authors": [
+        {
+            "name": "Leevi Graham",
+            "email": "leevi@newism.com.au"
+        }
+    ]
+}
