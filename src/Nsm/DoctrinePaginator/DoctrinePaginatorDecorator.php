@@ -75,7 +75,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * @param $currentPageNumber
+     * @param integer $currentPageNumber
      *
      * @return $this
      */
@@ -120,7 +120,7 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 19
      *
-     * @param $pageNumber
+     * @param integer $pageNumber
      *
      * @return int
      */
@@ -175,7 +175,7 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 10
      *
-     * @param $pageNumber
+     * @param integer $pageNumber
      *
      * @return int
      */
@@ -223,7 +223,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * @param $maxPerPageNumber
+     * @param integer $maxPerPageNumber
      *
      * @return bool
      */
@@ -237,7 +237,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * @return int
+     * @return double
      */
     public function getCurrentPageFirstResultPositionInTotalResults()
     {
@@ -254,9 +254,9 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 91
      *
-     * @param $pageNumber
+     * @param integer $pageNumber
      *
-     * @return int
+     * @return double
      */
     public function getPageFirstResultPositionInTotalResults($pageNumber)
     {
@@ -290,7 +290,7 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 95
      *
-     * @param $pageNumber
+     * @param integer $pageNumber
      *
      * @return int
      */
@@ -393,7 +393,7 @@ class DoctrinePaginatorDecorator
      *
      * @param $pageNumber
      *
-     * @return mixed
+     * @return integer
      * @throws \Exception
      */
     public function getNextPageNumber($pageNumber)
