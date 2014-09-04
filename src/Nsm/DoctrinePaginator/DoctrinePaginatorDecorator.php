@@ -9,7 +9,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  * @package Nsm\DoctrinePaginator
  *
  * $p = new \Nsm\DoctrinePaginator\DoctrinePaginator($qb);
- * * $pNum = $p->getCurrentPageNumber();
+ * $pNum = $p->getCurrentPageNumber();
  *
  * var_dump(
  *     array(
