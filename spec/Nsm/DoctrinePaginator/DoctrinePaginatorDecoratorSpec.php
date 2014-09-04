@@ -26,23 +26,23 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
         $this->setMaxPerPageNumber(10);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Nsm\DoctrinePaginator\DoctrinePaginatorDecorator');
     }
 
-    function it_should_return_the_expected_get_max_per_page_number()
+    public function it_should_return_the_expected_get_max_per_page_number()
     {
         $this->getMaxPerPageNumber()->shouldReturn(10);
     }
 
-    function it_should_return_the_expected_current_page_number()
+    public function it_should_return_the_expected_current_page_number()
     {
         $this->setCurrentPageNumber(2);
         $this->getCurrentPageNumber()->shouldReturn(2);
     }
 
-    function it_should_return_the_expected_total_result_count()
+    public function it_should_return_the_expected_total_result_count()
     {
         $this->getTotalResultCount()->shouldReturn(95);
     }
@@ -50,7 +50,7 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
     /**
      * @param \Doctrine\ORM\Tools\Pagination\Paginator $paginator
      */
-    function it_should_return_the_expected_total_page_count(Paginator $paginator)
+    public function it_should_return_the_expected_total_page_count(Paginator $paginator)
     {
         $this->getTotalPageCount()->shouldReturn(10);
 
@@ -58,7 +58,7 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
         $this->getTotalPageCount()->shouldReturn(10);
     }
 
-    function it_should_return_the_expected_query_offset_for_page()
+    public function it_should_return_the_expected_query_offset_for_page()
     {
         $this->getPageQueryOffset(1)->shouldReturn(0);
         $this->getPageQueryOffset(2)->shouldReturn(9);
@@ -68,7 +68,7 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
     /**
      * @param \Doctrine\ORM\Tools\Pagination\Paginator $paginator
      */
-    function it_should_return_the_expected_result_count_for_page(Paginator $paginator)
+    public function it_should_return_the_expected_result_count_for_page(Paginator $paginator)
     {
         $this->getPageResultCount(1)->shouldReturn(10);
         $this->getPageResultCount(10)->shouldReturn(5);
@@ -77,13 +77,13 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
         $this->getPageResultCount(10)->shouldReturn(10);
     }
 
-    function it_should_return_the_expected_first_result_position_for_page_in_total_results()
+    public function it_should_return_the_expected_first_result_position_for_page_in_total_results()
     {
         $this->getPageFirstResultPositionInTotalResults(1)->shouldReturn(1);
         $this->getPageFirstResultPositionInTotalResults(4)->shouldReturn(31);
     }
 
-    function it_should_return_the_expected_last_result_position_for_page_in_total_results()
+    public function it_should_return_the_expected_last_result_position_for_page_in_total_results()
     {
         $this->getPageLastResultPositionInTotalResults(1)->shouldReturn(10);
         $this->getPageLastResultPositionInTotalResults(10)->shouldReturn(95);
