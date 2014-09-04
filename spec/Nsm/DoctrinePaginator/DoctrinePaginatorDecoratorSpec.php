@@ -10,6 +10,10 @@ use Prophecy\Argument;
 
 class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
 {
+    /**
+     * @param \Doctrine\ORM\Tools\Pagination\Paginator $paginator
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     public function let(Paginator $paginator, EntityManager $entityManager)
     {
         // Create a concrete query see: https://github.com/phpspec/prophecy/issues/102
@@ -43,6 +47,9 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
         $this->getTotalResultCount()->shouldReturn(95);
     }
 
+    /**
+     * @param \Doctrine\ORM\Tools\Pagination\Paginator $paginator
+     */
     function it_should_return_the_expected_total_page_count(Paginator $paginator)
     {
         $this->getTotalPageCount()->shouldReturn(10);
@@ -58,6 +65,9 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
         $this->getPageQueryOffset(3)->shouldReturn(19);
     }
 
+    /**
+     * @param \Doctrine\ORM\Tools\Pagination\Paginator $paginator
+     */
     function it_should_return_the_expected_result_count_for_page(Paginator $paginator)
     {
         $this->getPageResultCount(1)->shouldReturn(10);
@@ -118,6 +128,9 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
         $this->shouldThrow('\Exception')->duringGetNextPageNumber(10);
     }
 
+    /**
+     * @param \Doctrine\ORM\Tools\Pagination\Paginator $paginator
+     */
     public function it_should_return_the_expected_can_paginate_boolean(Paginator $paginator)
     {
         $this->canPaginate()->shouldReturn(true);

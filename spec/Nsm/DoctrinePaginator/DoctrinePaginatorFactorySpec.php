@@ -15,6 +15,10 @@ class DoctrinePaginatorFactorySpec extends ObjectBehavior
         $this->shouldHaveType('Nsm\DoctrinePaginator\DoctrinePaginatorFactory');
     }
 
+    /**
+     * @param \Doctrine\ORM\QueryBuilder $queryBuilder
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     function it_should_return_the_expected_object_when_constructed_with_query_builder(
         QueryBuilder $queryBuilder,
         EntityManager $entityManager
@@ -26,6 +30,9 @@ class DoctrinePaginatorFactorySpec extends ObjectBehavior
         $this->create($queryBuilder)->shouldHaveType('Nsm\DoctrinePaginator\DoctrinePaginatorDecorator');
     }
 
+    /**
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     function it_should_return_the_expected_object_when_constructed_with_query(EntityManager $entityManager)
     {
         // Create a concrete query see: https://github.com/phpspec/prophecy/issues/102
@@ -34,9 +41,8 @@ class DoctrinePaginatorFactorySpec extends ObjectBehavior
         $this->create($query)->shouldHaveType('Nsm\DoctrinePaginator\DoctrinePaginatorDecorator');
     }
 
-    function it_should_return_an_invalid_argument_exception_when_constructed_with_an_invalid_argument(EntityManager $entityManager)
+    function it_should_return_an_invalid_argument_exception_when_constructed_with_an_invalid_argument()
     {
         $this->shouldThrow('\InvalidArgumentException')->during('create', array(false));
     }
-
 }

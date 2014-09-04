@@ -75,8 +75,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * @param $currentPageNumber
-     *
+     * @param int $currentPageNumber
      * @return $this
      */
     public function setCurrentPageNumber($currentPageNumber)
@@ -120,7 +119,7 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 19
      *
-     * @param $pageNumber
+     * @param int $pageNumber
      *
      * @return int
      */
@@ -175,7 +174,7 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 10
      *
-     * @param $pageNumber
+     * @param int $pageNumber
      *
      * @return int
      */
@@ -203,7 +202,9 @@ class DoctrinePaginatorDecorator
      */
     public function getTotalPageCount()
     {
-        return intval(ceil($this->getTotalResultCount() / $this->getMaxPerPageNumber()));
+        $totalPages = ceil($this->getTotalResultCount() / $this->getMaxPerPageNumber());
+
+        return (int)$totalPages;
     }
 
     /**
@@ -223,7 +224,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * @param $maxPerPageNumber
+     * @param int $maxPerPageNumber
      *
      * @return bool
      */
@@ -254,15 +255,16 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 91
      *
-     * @param $pageNumber
+     * @param int $pageNumber
      *
      * @return int
      */
     public function getPageFirstResultPositionInTotalResults($pageNumber)
     {
         $pageNumber -= 1;
+        $firstPage = ($this->maxPerPageNumber * $pageNumber) + 1;
 
-        return ($this->maxPerPageNumber * $pageNumber) + 1;
+        return (int)$firstPage;
     }
 
     /**
@@ -290,7 +292,7 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 95
      *
-     * @param $pageNumber
+     * @param int $pageNumber
      *
      * @return int
      */
@@ -325,14 +327,16 @@ class DoctrinePaginatorDecorator
      *  And the offset is 3
      *  The expected result should be [7, 8, 9, 10]
      *
-     * @param $pageNumber
-     * @param $offset
+     * @param int $pageNumber
+     * @param int $offset
      *
      * @return array
      */
     public function getPageRangeForPage($pageNumber, $offset = 3)
     {
-        $pageRange = range(max($pageNumber - $offset, 1), min($pageNumber + $offset, $this->getTotalPageCount()));
+        $firstPage = max($pageNumber - $offset, 1);
+        $lastPage = min($pageNumber + $offset, $this->getTotalPageCount());
+        $pageRange = range($firstPage, $lastPage);
 
         return $pageRange;
     }
@@ -352,7 +356,7 @@ class DoctrinePaginatorDecorator
      *  And the page number is 1
      *  Then an exception should be thrown
      *
-     * @param $pageNumber
+     * @param int $pageNumber
      *
      * @return mixed
      * @throws \Exception
@@ -367,7 +371,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * @param $pageNumber
+     * @param int $pageNumber
      *
      * @return bool
      */
@@ -391,7 +395,7 @@ class DoctrinePaginatorDecorator
      *  And the page number is 10
      *  Then an exception should be thrown
      *
-     * @param $pageNumber
+     * @param int $pageNumber
      *
      * @return mixed
      * @throws \Exception
@@ -406,7 +410,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * @param $pageNumber
+     * @param int $pageNumber
      *
      * @return bool
      */
