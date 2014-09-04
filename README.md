@@ -28,3 +28,11 @@ var_dump(
      )
 );
 ```
+
+Running PhpSpec Tests
+---------------------
+
+```bash
+composer install
+vendor/bin/phpspec run
+```
