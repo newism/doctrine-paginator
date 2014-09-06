@@ -31,8 +31,8 @@ var_dump(
 );
 ```
 
-Running PhpSpec Tests
----------------------
+Running Tests
+-------------
 
 ```bash
 composer install
