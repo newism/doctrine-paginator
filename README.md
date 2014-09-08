@@ -15,7 +15,7 @@ $p = new \Nsm\DoctrinePaginator\DoctrinePaginator($qb);
 var_dump(
     array(
         'maxPageNumber' => $p->getMaxPerPageNumber(),
-        'currentPageNumer' => $p->getCurrentPageNumber(),
+        'currentPageNumber' => $p->getCurrentPageNumber(),
         'currentPageResultCount' => $p->getCurrentPageResultCount(),
         'currentPageFirstResultOffset' => $p->getCurrentPageFirstResultPositionInTotalResults(),
         'currentPageLastResultOffset' => $p->getCurrentPageLastResultPositionInTotalResults(),
