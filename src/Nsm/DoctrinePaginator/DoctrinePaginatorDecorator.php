@@ -14,7 +14,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  * var_dump(
  *     array(
  *         'maxPageNumber' => $p->getMaxPerPageNumber(),
- *         'currentPageNumer' => $p->getCurrentPageNumber(),
+ *         'currentPageNumber' => $p->getCurrentPageNumber(),
  *         'currentPageResultCount' => $p->getCurrentPageResultCount(),
  *         'currentPageFirstResultOffset' => $p->getCurrentPageFirstResultPositionInTotalResults(),
  *         'currentPageLastResultOffset' => $p->getCurrentPageLastResultPositionInTotalResults(),
@@ -111,14 +111,14 @@ class DoctrinePaginatorDecorator
      *  And there are 10 results per page
      *  And the page number is 2
      *  Then there should be 10 pages
-     *  And the returned value should be 9
+     *  And the returned value should be 10
      *
      * Scenario:
      *  Given there are 95 results
      *  And there are 10 results per page
      *  And the page number is 3
      *  Then there should be 10 pages
-     *  And the returned value should be 19
+     *  And the returned value should be 20
      *
      * @param int $pageNumber
      *
@@ -128,11 +128,7 @@ class DoctrinePaginatorDecorator
     {
         $pageNumber -= 1;
 
-        if ($pageNumber === 0) {
-            return 0;
-        }
-
-        return $this->maxPerPageNumber * $pageNumber - 1;
+        return $this->maxPerPageNumber * $pageNumber;
     }
 
     /**
@@ -164,7 +160,7 @@ class DoctrinePaginatorDecorator
      * Scenario:
      *  Given there are 95 results
      *  And there are 10 results per page
-     *  And the page number is 9
+     *  And the page number is 10
      *  Then there should be 10 pages
      *  And the returned value should be 5
      *
@@ -252,7 +248,14 @@ class DoctrinePaginatorDecorator
      * Scenario:
      *  Given there are 95 results
      *  And there are 10 results per page
-     *  And the page number is 9
+     *  And the page number is 1
+     *  Then there should be 10 pages
+     *  And the returned value should be 1
+     *
+     * Scenario:
+     *  Given there are 95 results
+     *  And there are 10 results per page
+     *  And the page number is 10
      *  Then there should be 10 pages
      *  And the returned value should be 91
      *
@@ -289,7 +292,7 @@ class DoctrinePaginatorDecorator
      * Scenario:
      *  Given there are 95 results
      *  And there are 10 results per page
-     *  And the page number is 9
+     *  And the page number is 10
      *  Then there should be 10 pages
      *  And the returned value should be 95
      *
@@ -343,7 +346,7 @@ class DoctrinePaginatorDecorator
     }
 
     /**
-     * Returns the next page number or an exception
+     * Returns the previous page number or an exception
      *
      * Scenario:
      *  Given there are 95 results
@@ -431,7 +434,7 @@ class DoctrinePaginatorDecorator
      * Scenario:
      *  Given there are 10 results
      *  And there are 10 results per page
-     *  Then the expected result should be true
+     *  Then the expected result should be false
      *
      * @return bool
      */
