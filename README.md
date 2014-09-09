@@ -9,24 +9,24 @@ Usage
 -----
 
 ```php
-// $qb is a Doctrine QueryBuilder object 
+// $qb is a Doctrine QueryBuilder object
 $p = new \Nsm\DoctrinePaginator\DoctrinePaginator($qb);
 
 var_dump(
     array(
         'maxPageNumber' => $p->getMaxPerPageNumber(),
-        'currentPageNumer' => $p->getCurrentPageNumber(),
+        'currentPageNumber' => $p->getCurrentPageNumber(),
         'currentPageResultCount' => $p->getCurrentPageResultCount(),
-        'currentPageFirstResultOffset' => $p->getCurrentPageFirstResultPositionInTotalResults(),
-        'currentPageLastResultOffset' => $p->getCurrentPageLastResultPositionInTotalResults(),
+        'currentPageFirstResultPositionInTotalResults' => $p->getCurrentPageFirstResultPositionInTotalResults(),
+        'currentPageLastResultPositionInTotalResults' => $p->getCurrentPageLastResultPositionInTotalResults(),
         'hasPreviousPage' => $p->hasPreviousPage($pNum),
-        'previousPage' => $p->hasPreviousPage($pNum) ? $p->getPreviousPageNumber($pNum) : false,
+        'previousPageNumber' => $p->hasPreviousPage($pNum) ? $p->getPreviousPageNumber($pNum) : false,
         'hasNextPage' => $p->hasNextPage($pNum),
-        'nextPage' => $p->hasNextPage($pNum) ? $p->getNextPageNumber($pNum) : false,
-        'pageCount' => $p->getTotalPageCount(),
+        'nextPageNumber' => $p->hasNextPage($pNum) ? $p->getNextPageNumber($pNum) : false,
+        'totalPageCount' => $p->getTotalPageCount(),
         'totalResultCount' => $p->getTotalResultCount(),
         'canPaginate' => $p->canPaginate(),
-        'currentPageOffsetRange' => $p->getPageRangeForPage(3)
+        'pageRangeForPage' => $p->getPageRangeForPage(3)
      )
 );
 ```
