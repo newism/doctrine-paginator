@@ -61,8 +61,8 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
     public function it_should_return_the_expected_query_offset_for_page()
     {
         $this->getPageQueryOffset(1)->shouldReturn(0);
-        $this->getPageQueryOffset(2)->shouldReturn(9);
-        $this->getPageQueryOffset(3)->shouldReturn(19);
+        $this->getPageQueryOffset(2)->shouldReturn(10);
+        $this->getPageQueryOffset(3)->shouldReturn(20);
     }
 
     /**

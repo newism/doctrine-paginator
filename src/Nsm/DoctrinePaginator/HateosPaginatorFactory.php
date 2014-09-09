@@ -44,7 +44,7 @@ class HateosPaginatorFactory
         return new PaginatedRepresentation(
             $inline,
             $route->getName(),
-            // PaginatedRepresentation::__construct exprects an array
+            // PaginatedRepresentation::__construct expects an array
             (array) $route->getParameters(),
             $pager->getCurrentPageNumber(),
             $pager->getMaxPerPageNumber(),
