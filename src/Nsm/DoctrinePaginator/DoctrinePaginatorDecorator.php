@@ -54,8 +54,8 @@ class DoctrinePaginatorDecorator
     public function __construct(Paginator $paginator, $maxPerPageNumber = 50, $currentPageNumber = 1)
     {
         $this->paginator = $paginator;
-        $this->setCurrentPageNumber($currentPageNumber);
         $this->setMaxPerPageNumber($maxPerPageNumber);
+        $this->setCurrentPageNumber($currentPageNumber);
     }
 
     /**
@@ -227,7 +227,7 @@ class DoctrinePaginatorDecorator
      */
     public function setMaxPerPageNumber($maxPerPageNumber)
     {
-        $this->maxPerPageNumber = (int)$maxPerPageNumber;
+        $this->maxPerPageNumber = (int) $maxPerPageNumber;
 
         $this->paginator->getQuery()->setMaxResults($this->maxPerPageNumber);
 
@@ -365,8 +365,12 @@ class DoctrinePaginatorDecorator
      * @return mixed
      * @throws \Exception
      */
-    public function getPreviousPageNumber($pageNumber)
+    public function getPreviousPageNumber($pageNumber = null)
     {
+        if($pageNumber == null) {
+            $pageNumber = $this->currentPageNumber;
+        }
+
         if (false === $this->hasPreviousPage($pageNumber)) {
             throw new \Exception('Out of bounds');
         }
@@ -379,8 +383,12 @@ class DoctrinePaginatorDecorator
      *
      * @return bool
      */
-    public function hasPreviousPage($pageNumber)
+    public function hasPreviousPage($pageNumber = null)
     {
+        if($pageNumber == null) {
+            $pageNumber = $this->currentPageNumber;
+        }
+
         return $pageNumber > 1;
     }
 
@@ -404,8 +412,12 @@ class DoctrinePaginatorDecorator
      * @return integer
      * @throws \Exception
      */
-    public function getNextPageNumber($pageNumber)
+    public function getNextPageNumber($pageNumber = null)
     {
+        if($pageNumber == null) {
+            $pageNumber = $this->currentPageNumber;
+        }
+
         if (false === $this->hasNextPage($pageNumber)) {
             throw new \Exception('Out of bounds');
         }
@@ -418,8 +430,12 @@ class DoctrinePaginatorDecorator
      *
      * @return bool
      */
-    public function hasNextPage($pageNumber)
+    public function hasNextPage($pageNumber = null)
     {
+        if($pageNumber == null) {
+            $pageNumber = $this->currentPageNumber;
+        }
+
         return $pageNumber < $this->getTotalPageCount();
     }
 

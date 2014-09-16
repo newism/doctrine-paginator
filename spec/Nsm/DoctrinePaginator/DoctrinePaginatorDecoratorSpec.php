@@ -108,11 +108,21 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
     {
         $this->hasPreviousPage(2)->shouldReturn(true);
         $this->hasPreviousPage(1)->shouldReturn(false);
+
+        $this->setCurrentPageNumber(2);
+        $this->hasPreviousPage()->shouldReturn(true);
+
+        $this->setCurrentPageNumber(1);
+        $this->hasPreviousPage()->shouldReturn(false);
     }
 
     public function it_should_return_the_expected_previous_page_number_or_exception()
     {
         $this->getPreviousPageNumber(2)->shouldReturn(1);
+
+        $this->setCurrentPageNumber(2);
+        $this->getPreviousPageNumber()->shouldReturn(1);
+
         $this->shouldThrow('\Exception')->duringGetPreviousPageNumber(1);
     }
 
@@ -120,11 +130,21 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
     {
         $this->hasNextPage(1)->shouldReturn(true);
         $this->hasNextPage(10)->shouldReturn(false);
+
+        $this->setCurrentPageNumber(1);
+        $this->hasNextPage()->shouldReturn(true);
+
+        $this->setCurrentPageNumber(10);
+        $this->hasNextPage()->shouldReturn(false);
     }
 
     public function it_should_return_the_expected_next_page_number_or_exception()
     {
         $this->getNextPageNumber(1)->shouldReturn(2);
+
+        $this->setCurrentPageNumber(1);
+        $this->getNextPageNumber()->shouldReturn(2);
+
         $this->shouldThrow('\Exception')->duringGetNextPageNumber(10);
     }
 
