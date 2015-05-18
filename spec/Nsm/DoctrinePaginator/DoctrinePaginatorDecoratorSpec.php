@@ -100,16 +100,22 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
         $this->getPageResultCount(10)->shouldReturn(10);
     }
 
-    public function it_should_return_the_expected_first_result_position_for_page_in_total_results()
+    public function it_should_return_the_expected_first_result_position_for_page_in_total_results(Paginator $paginator)
     {
         $this->getPageFirstResultPositionInTotalResults(1)->shouldReturn(1);
         $this->getPageFirstResultPositionInTotalResults(4)->shouldReturn(31);
+
+        $paginator->count()->willReturn(0);
+        $this->getPageFirstResultPositionInTotalResults(1)->shouldReturn(0);
     }
 
-    public function it_should_return_the_expected_last_result_position_for_page_in_total_results()
+    public function it_should_return_the_expected_last_result_position_for_page_in_total_results(Paginator $paginator)
     {
         $this->getPageLastResultPositionInTotalResults(1)->shouldReturn(10);
         $this->getPageLastResultPositionInTotalResults(10)->shouldReturn(95);
+
+        $paginator->count()->willReturn(0);
+        $this->getPageFirstResultPositionInTotalResults(1)->shouldReturn(0);
     }
 
     public function it_should_return_the_expected_range_of_page_numbers()

@@ -71,7 +71,7 @@ class DoctrinePaginatorDecorator
      */
     public function getCurrentPageNumber()
     {
-        return (int) $this->currentPageNumber;
+        return (int)$this->currentPageNumber;
     }
 
     /**
@@ -177,9 +177,9 @@ class DoctrinePaginatorDecorator
      */
     public function getPageResultCount($pageNumber)
     {
-        if($pageNumber > $this->getTotalPageCount()) {
+        if ($pageNumber > $this->getTotalPageCount()) {
             return 0;
-        } elseif($pageNumber < $this->getTotalPageCount()) {
+        } elseif ($pageNumber < $this->getTotalPageCount()) {
             return $this->getMaxPerPageNumber();
         } else {
             return $this->getTotalResultCount() - (($this->getTotalPageCount() - 1) * $this->getMaxPerPageNumber());
@@ -210,7 +210,7 @@ class DoctrinePaginatorDecorator
     {
         $totalPages = ceil($this->getTotalResultCount() / $this->getMaxPerPageNumber()) ?: 1;
 
-        return (int) $totalPages;
+        return (int)$totalPages;
     }
 
     /**
@@ -236,7 +236,7 @@ class DoctrinePaginatorDecorator
      */
     public function setMaxPerPageNumber($maxPerPageNumber)
     {
-        $this->maxPerPageNumber = (int) $maxPerPageNumber;
+        $this->maxPerPageNumber = (int)$maxPerPageNumber;
 
         $this->paginator->getQuery()->setMaxResults($this->maxPerPageNumber);
 
@@ -268,16 +268,24 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 91
      *
+     * Scenario:
+     *  Given there are 0 results
+     *  And there are 10 results per page
+     *  And the page number is 1
+     *  Then there should be 1 pages
+     *  And the returned value should be 0
+     *
      * @param int $pageNumber
      *
      * @return double
      */
     public function getPageFirstResultPositionInTotalResults($pageNumber)
     {
-        $pageNumber -= 1;
-        $firstPage = ($this->maxPerPageNumber * $pageNumber) + 1;
+        $totalResults = $this->getTotalResultCount();
 
-        return (int)$firstPage;
+        return (0 === $totalResults)
+            ? $totalResults
+            : ($pageNumber - 1) * $this->getMaxPerPageNumber() + 1;
     }
 
     /**
@@ -305,15 +313,24 @@ class DoctrinePaginatorDecorator
      *  Then there should be 10 pages
      *  And the returned value should be 95
      *
+     * Scenario:
+     *  Given there are 0 results
+     *  And there are 10 results per page
+     *  And the page number is 1
+     *  Then there should be 1 pages
+     *  And the returned value should be 0
+     *
      * @param int $pageNumber
      *
      * @return int
      */
     public function getPageLastResultPositionInTotalResults($pageNumber)
     {
-        return ($pageNumber < $this->getTotalPageCount())
-            ? $pageNumber * $this->getMaxPerPageNumber()
-            : $this->getTotalResultCount();
+        $totalResults = $this->getTotalResultCount();
+
+        return (0 === $totalResults || $pageNumber === $this->getTotalPageCount())
+            ? $totalResults
+            : $pageNumber * $this->maxPerPageNumber;
     }
 
     /**
@@ -376,7 +393,7 @@ class DoctrinePaginatorDecorator
      */
     public function getPreviousPageNumber($pageNumber = null)
     {
-        if($pageNumber == null) {
+        if ($pageNumber == null) {
             $pageNumber = $this->currentPageNumber;
         }
 
@@ -394,7 +411,7 @@ class DoctrinePaginatorDecorator
      */
     public function hasPreviousPage($pageNumber = null)
     {
-        if($pageNumber == null) {
+        if ($pageNumber == null) {
             $pageNumber = $this->currentPageNumber;
         }
 
@@ -423,7 +440,7 @@ class DoctrinePaginatorDecorator
      */
     public function getNextPageNumber($pageNumber = null)
     {
-        if($pageNumber == null) {
+        if ($pageNumber == null) {
             $pageNumber = $this->currentPageNumber;
         }
 
@@ -441,7 +458,7 @@ class DoctrinePaginatorDecorator
      */
     public function hasNextPage($pageNumber = null)
     {
-        if($pageNumber == null) {
+        if ($pageNumber == null) {
             $pageNumber = $this->currentPageNumber;
         }
 
