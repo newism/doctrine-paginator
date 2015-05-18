@@ -5,19 +5,37 @@ namespace spec\Nsm\DoctrinePaginator;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\ORM\Tools\Setup;
+
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+
 class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
 {
+    private static $sharedEm;
+
     /**
      * @param \Doctrine\ORM\Tools\Pagination\Paginator $paginator
-     * @param \Doctrine\ORM\EntityManager $entityManager
      */
-    public function let(Paginator $paginator, EntityManager $entityManager)
+    public function let(Paginator $paginator)
     {
-        // Create a concrete query see: https://github.com/phpspec/prophecy/issues/102
-        $query = new Query($entityManager->getWrappedObject());
+
+        if (!isset(self::$sharedEm)) {
+
+            $config = Setup::createAnnotationMetadataConfiguration(array());
+            $config->setDefaultQueryHints(array());
+
+            $conn = array(
+                'driver' => 'pdo_sqlite',
+                'path' => __DIR__.'/db.sqlite',
+                'defaultQueryHints' => array()
+            );
+
+            self::$sharedEm = EntityManager::create($conn, $config);
+        }
+
+        $query = new Query(self::$sharedEm);
 
         $paginator->getQuery()->willReturn($query);
         $paginator->count()->willReturn(95);
@@ -56,6 +74,10 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
 
         $paginator->count()->willReturn(100);
         $this->getTotalPageCount()->shouldReturn(10);
+
+        // Zero results should still return 1 page.
+        $paginator->count()->willReturn(0);
+        $this->getTotalPageCount()->shouldReturn(1);
     }
 
     public function it_should_return_the_expected_query_offset_for_page()
@@ -72,6 +94,7 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
     {
         $this->getPageResultCount(1)->shouldReturn(10);
         $this->getPageResultCount(10)->shouldReturn(5);
+        $this->getPageResultCount(11)->shouldReturn(0);
 
         $paginator->count()->willReturn(100);
         $this->getPageResultCount(10)->shouldReturn(10);
@@ -92,6 +115,7 @@ class DoctrinePaginatorDecoratorSpec extends ObjectBehavior
     public function it_should_return_the_expected_range_of_page_numbers()
     {
         $this->setMaxPerPageNumber(10);
+
         $this->getPageRangeForPage(1, 3)->shouldReturn([1, 2, 3, 4]);
         $this->getPageRangeForPage(2, 3)->shouldReturn([1, 2, 3, 4, 5]);
         $this->getPageRangeForPage(3, 3)->shouldReturn([1, 2, 3, 4, 5, 6]);

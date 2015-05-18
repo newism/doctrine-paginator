@@ -36,5 +36,5 @@ Running Tests
 
 ```bash
 composer install
-vendor/bin/phpspec run
+bin/phpspec run
 ```

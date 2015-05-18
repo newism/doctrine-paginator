@@ -71,7 +71,7 @@ class DoctrinePaginatorDecorator
      */
     public function getCurrentPageNumber()
     {
-        return $this->currentPageNumber;
+        return (int) $this->currentPageNumber;
     }
 
     /**
@@ -177,9 +177,13 @@ class DoctrinePaginatorDecorator
      */
     public function getPageResultCount($pageNumber)
     {
-        return ($pageNumber < $this->getTotalPageCount())
-            ? $this->getMaxPerPageNumber()
-            : $this->getTotalResultCount() - (($this->getTotalPageCount() - 1) * $this->getMaxPerPageNumber());
+        if($pageNumber > $this->getTotalPageCount()) {
+            return 0;
+        } elseif($pageNumber < $this->getTotalPageCount()) {
+            return $this->getMaxPerPageNumber();
+        } else {
+            return $this->getTotalResultCount() - (($this->getTotalPageCount() - 1) * $this->getMaxPerPageNumber());
+        }
     }
 
     /**
@@ -195,13 +199,18 @@ class DoctrinePaginatorDecorator
      *  And there are 10 results per page
      *  Then there should be 1 pages
      *
+     * Scenario:
+     *  Given there are 0 results
+     *  And there are 10 results per page
+     *  Then there should be 1 pages
+     *
      * @return int
      */
     public function getTotalPageCount()
     {
-        $totalPages = ceil($this->getTotalResultCount() / $this->getMaxPerPageNumber());
+        $totalPages = ceil($this->getTotalResultCount() / $this->getMaxPerPageNumber()) ?: 1;
 
-        return (int)$totalPages;
+        return (int) $totalPages;
     }
 
     /**
