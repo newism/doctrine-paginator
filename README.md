@@ -1,8 +1,6 @@
 NSM Doctrine Paginator 
 ======================
 
-[![Travis CI](https://travis-ci.org/newism/doctrine-paginator.svg?branch=master)](https://travis-ci.org/newism/doctrine-paginator) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/newism/doctrine-paginator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/newism/doctrine-paginator/?branch=master)
-
 Simple decorator for `\Doctrine\ORM\Tools\Pagination\Paginator`.
 
 Usage
@@ -14,11 +12,12 @@ $p = new \Nsm\DoctrinePaginator\DoctrinePaginator($qb);
 
 var_dump(
     array(
-        'maxPageNumber' => $p->getMaxPerPageNumber(),
         'currentPageNumber' => $p->getCurrentPageNumber(),
+        'currentPageResults' => $p->getCurrentPageResults(),
         'currentPageResultCount' => $p->getCurrentPageResultCount(),
         'currentPageFirstResultPositionInTotalResults' => $p->getCurrentPageFirstResultPositionInTotalResults(),
         'currentPageLastResultPositionInTotalResults' => $p->getCurrentPageLastResultPositionInTotalResults(),
+        'maxPageNumber' => $p->getMaxPerPageNumber(),
         'hasPreviousPage' => $p->hasPreviousPage($pNum),
         'previousPageNumber' => $p->hasPreviousPage($pNum) ? $p->getPreviousPageNumber($pNum) : false,
         'hasNextPage' => $p->hasNextPage($pNum),

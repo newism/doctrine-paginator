@@ -1,7 +1,7 @@
 {
     "name": "nsm/doctrine-paginator",
     "description": "Simple decorator for Doctrine Paginator",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "license": "MIT",
     "keywords": ["pagination", "doctrine", "database"],
     "homepage": "https://github.com/newism/doctrine-paginator",
